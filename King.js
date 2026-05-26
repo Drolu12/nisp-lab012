@@ -1,12 +1,11 @@
-// Klasa reprezentująca króla
 class King {
     constructor() {
         this.type = "KING";
     }
 
     validateMove(move) {
-        
-        // dokoncz implementacje
-        return false;
+        const dx = Math.abs(move.destinationX - move.sourceX);
+        const dy = Math.abs(move.destinationY - move.sourceY);
+        return (dx <= 1 && dy <= 1) && !(dx === 0 && dy === 0);
     }
 }
