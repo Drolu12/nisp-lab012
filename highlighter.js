@@ -41,6 +41,8 @@ document.addEventListener('click', function(event) {
     const clickX = parseInt(idParts[0]); 
     const clickY = parseInt(idParts[1]);
 
+    const wasPieceSelected = selectedSquareId !== null;
+
     if (selectedSquareId && clickedSquare.classList.contains('highlight-move')) {
         boardState[clickedId] = boardState[selectedSquareId];
         delete boardState[selectedSquareId];
@@ -72,8 +74,10 @@ document.addEventListener('click', function(event) {
             }
         }
     } else {
-        const selectedPieceType = document.getElementById('chess').value;
-        boardState[clickedId] = createPiece(selectedPieceType);
-        renderBoard();
+        if (!wasPieceSelected) {
+            const selectedPieceType = document.getElementById('chess').value;
+            boardState[clickedId] = createPiece(selectedPieceType);
+            renderBoard();
+        }
     }
 });
